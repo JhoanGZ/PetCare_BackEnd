@@ -21,29 +21,38 @@ class AuthController extends Controller
             'phone_number' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'image' => 'string',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $user = User::create([
-            'user_dni'=>$attrs['user_dni'],
-            'username'=>$attrs['username'],
-            'name'=>$attrs['name'],
-            'last_name'=>$attrs['last_name'],
-            'birthdate'=>$attrs['birthdate'],
-            'address'=>$attrs['address'],
-            'phone_number'=>$attrs['phone_number'],
-            'email'=>$attrs['email'],
-            'image'=>$attrs['image'],
-            'account_status'=> '1',
-            'account_credential'=> '1',
-            'password'=>bcrypt($attrs['password']),
+            'user_dni' => $attrs['user_dni'],
+            'username' => $attrs['username'],
+            'name' => $attrs['name'],
+            'last_name' => $attrs['last_name'],
+            'birthdate' => $attrs['birthdate'],
+            'address' => $attrs['address'],
+            'phone_number' => $attrs['phone_number'],
+            'email' => $attrs['email'],
+            'image' => $attrs['image'],
+            'account_status' => '1',
+            'account_credential' => '1',
+            'password' => bcrypt($attrs['password']),
+            //
+
 
         ]);
+
+        // Crear el token de API asociado al usuario
+        $token = $user->createToken('secret')->plainTextToken;
+
+        // Asignar el token al usuario
+        $user->api_token = $token;
+        $user->save();
 
         //return user & token in response
         return response([
             'user' => $user,
-            'token' => $user->createToken('secret')->plainTextToken,
+            'api_token' => $token,
             ], 200);
         }
 
