@@ -82,7 +82,9 @@ class AuthController extends Controller
     
         // Devolver la respuesta
         return response([
+            'name' => $user->name,
             'token' => $user->api_token,
+            'auth' => true,
         ], 200);
     }
     
