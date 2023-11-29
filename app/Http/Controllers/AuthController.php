@@ -9,17 +9,18 @@ use App\Models\User;
 class AuthController extends Controller
 {
     //Register user
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         //validate fields
         $attrs = $request->validate([
-            'user_dni' => 'required|string',
-            'username' => 'required|string',
-            'name' => 'required|string',
-            'last_name' => 'required|string',
+            'user_dni' => 'required|min:5|string',
+            'username' => 'required|min:3|max:20|string',
+            'name' => 'required|min:2|max:60|string',
+            'last_name' => 'required|min:3|max:30|string',
             'birthdate' => 'required|date_format:Y-m-d',
-            'address' => 'required|string',
-            'phone_number' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            'address' => 'required|min:3|max:30|string',
+            'phone_number' => 'required|max:30|string',
+            'email' => 'required|email|min:4|unique:users,email',
             'image' => 'string',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -53,42 +54,56 @@ class AuthController extends Controller
         return response([
             'user' => $user,
             'api_token' => $token,
-            ], 200);
-        }
+        ], 200);
+    }
 
-        // login user
-        public function login(Request $request){
-            //validate fields
-            $attrs = $request->validate([
-                'email' => 'required|email',
-                'password' => 'required|min:6',
-            ]);
-
-            // attemp login
-            if (!Auth::attempt($attrs)) {
-                return response([
-                    'message' => 'Invalid credentials.'
-                ], 403);
-            }
+    // login user
+    public function login(Request $request)
+    {
+        // Validar campos
+        $attrs = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
     
-            //return user & token in response
+        // Intentar iniciar sesión
+        if (!Auth::attempt($attrs)) {
             return response([
-                'user' => auth()->user(),
-                'token' => auth()->user()->createToken('secret')->plainTextToken,
-            ], 200);
+                'message' => 'Invalid credentials.'
+            ], 403);
         }
+    
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+    
+        // Sobrescribir la api_token
+        $user->api_token = $user->createToken('secret')->plainTextToken;
+        $user->save();
+    
+        // Devolver la respuesta
+        return response([
+            'token' => $user->api_token,
+        ], 200);
+    }
+    
 
-        //logout user
-        public function logout(){
-            auth()->user()->tokens()->delete();
-            return response([
-                'message' => 'Logout success.'
-            ], 200);
-        }
+    //logout user
+public function logout()
+{
+    $user = auth()->user();
+    $user->api_token = null; // O cualquier valor predeterminado que desees
+    $user->save();
 
-        //get user details
-        public function user(){
-            //return response(['user' => Auth::user()], 200);
-            return response(['user' => auth()->user()], 200);
-        }
+    return response([
+        'message' => 'Logout success.'
+    ], 200);
+}
+
+
+
+    //get user details
+    public function user()
+    {
+        return response(['user' => auth()->user()], 200);
+    }
 }
