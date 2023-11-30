@@ -20,16 +20,17 @@ class User extends Authenticatable
     protected $fillable = [
         // #LGNV ==>> Todo lo incluído en esta colección será
         // modificable por el usuario.
-        'user_dni',
-        'username',
-        'name',
-        'last_name',
-        'birthdate',
-        'address',
-        'phone_number',
+        'rut',
         'email',
-        'image',
-        'password',
+        'nombre',
+        'apellido',
+        'contrasena',
+        'fnac',
+        'direccion',
+        'sexo',
+        'celular',
+        'imagen',
+        'codigoVerificacion',
     ];
 
     /**
@@ -38,7 +39,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'contrasena',
         'api_token',
     ];
 
@@ -49,6 +50,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'contrasena' => 'hashed',
     ];
 }

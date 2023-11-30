@@ -13,31 +13,32 @@ class AuthController extends Controller
     {
         //validate fields
         $attrs = $request->validate([
-            'user_dni' => 'required|min:5|string',
-            'username' => 'required|min:3|max:20|string',
-            'name' => 'required|min:2|max:60|string',
-            'last_name' => 'required|min:3|max:30|string',
-            'birthdate' => 'required|date_format:Y-m-d',
-            'address' => 'required|min:3|max:30|string',
-            'phone_number' => 'required|max:30|string',
+            'rut' => 'required|min:5|string',
             'email' => 'required|email|min:4|unique:users,email',
-            'image' => 'string',
-            'password' => 'required|min:6|confirmed',
+            'nombre' => 'required|min:2|max:60|string',
+            'apellido' => 'required|min:3|max:30|string',
+            'contrasena' => 'required|min:6',
+            'fnac' => 'required|date_format:Y-m-d',
+            'direccion' => 'required|min:3|max:30|string',
+            'sexo' => 'required|min:1|max:1|integer', //NOTE::LUIGUI::30-11-23:: El selec del front debe suministrar un int 0 o 1.
+            'celular' => 'required|max:30|string',
+            'imagen' => 'string',
+            'codigoVerificacion' => 'string|min:5|max:5',
         ]);
 
         $user = User::create([
-            'user_dni' => $attrs['user_dni'],
-            'username' => $attrs['username'],
-            'name' => $attrs['name'],
-            'last_name' => $attrs['last_name'],
-            'birthdate' => $attrs['birthdate'],
-            'address' => $attrs['address'],
-            'phone_number' => $attrs['phone_number'],
+            'rut' => $attrs['rut'],
             'email' => $attrs['email'],
-            'image' => $attrs['image'],
-            'account_status' => '1',
-            'account_credential' => '1',
-            'password' => bcrypt($attrs['password']),
+            'nombre' => $attrs['nombre'],
+            'apellido' => $attrs['apellido'],
+            'contrasena' => bcrypt($attrs['contrasena']),
+            'fnac' => $attrs['fnac'],
+            'direccion' => $attrs['direccion'],
+            'sexo' => $attrs['sexo'],
+            'celular' => $attrs['celular'],
+            'imagen' => $attrs['imagen'],
+            'codigoVerificacion' => null,
+            'usuarioActivo' => '1',
             //
 
 
@@ -63,7 +64,7 @@ class AuthController extends Controller
         // Validar campos
         $attrs = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'contrasena' => 'required|min:6',
         ]);
     
         // Intentar iniciar sesión
