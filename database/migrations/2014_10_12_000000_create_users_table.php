@@ -33,13 +33,13 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('Usuario', function (Blueprint $table) {
-            $table->id('idUsuario')->unique();
+        Schema::create('users', function (Blueprint $table) {
+            $table->id('id')->unique();
             $table->string('rut')->unique();
             $table->string('email')->unique();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('contrasena');
+            $table->string('password');
             $table->date('fnac');
             $table->string('direccion');
             $table->unsignedTinyInteger('sexo');

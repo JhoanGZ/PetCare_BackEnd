@@ -17,13 +17,13 @@ class AuthController extends Controller
             'email' => 'required|email|min:4|unique:users,email',
             'nombre' => 'required|min:2|max:60|string',
             'apellido' => 'required|min:3|max:30|string',
-            'contrasena' => 'required|min:6',
+            'password' => 'required|min:6',
             'fnac' => 'required|date_format:Y-m-d',
             'direccion' => 'required|min:3|max:30|string',
-            'sexo' => 'required|min:1|max:1|integer', //NOTE::LUIGUI::30-11-23:: El selec del front debe suministrar un int 0 o 1.
+            'sexo' => 'required|max:1|integer', //NOTE::LUIGUI::30-11-23:: El selec del front debe suministrar un int 0 o 1.
             'celular' => 'required|max:30|string',
             'imagen' => 'string',
-            'codigoVerificacion' => 'string|min:5|max:5',
+            'codigoVerificacion' => 'string|max:5',
         ]);
 
         $user = User::create([
@@ -31,15 +31,15 @@ class AuthController extends Controller
             'email' => $attrs['email'],
             'nombre' => $attrs['nombre'],
             'apellido' => $attrs['apellido'],
-            'contrasena' => bcrypt($attrs['contrasena']),
+            'password' => bcrypt($attrs['password']),
             'fnac' => $attrs['fnac'],
             'direccion' => $attrs['direccion'],
             'sexo' => $attrs['sexo'],
             'celular' => $attrs['celular'],
-            'imagen' => $attrs['imagen'],
+            'imagen' => null,
             'codigoVerificacion' => null,
             'usuarioActivo' => '1',
-            //
+            // TODO::LUIGUI::30-11-23:: Leer el ultimo comit, debo ajutar la base de datos a las variables nuevas con migrate y además probar con postman y luego probar que el login siga funcionando.
 
 
         ]);
@@ -64,7 +64,7 @@ class AuthController extends Controller
         // Validar campos
         $attrs = $request->validate([
             'email' => 'required|email',
-            'contrasena' => 'required|min:6',
+            'password' => 'required|min:6',
         ]);
     
         // Intentar iniciar sesión
@@ -83,7 +83,7 @@ class AuthController extends Controller
     
         // Devolver la respuesta
         return response([
-            'name' => $user->name,
+            'name' => $user->nombre,
             'token' => $user->api_token,
             'auth' => true,
         ], 200);

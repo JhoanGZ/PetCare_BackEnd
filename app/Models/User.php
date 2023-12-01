@@ -24,7 +24,7 @@ class User extends Authenticatable
         'email',
         'nombre',
         'apellido',
-        'contrasena',
+        'password',
         'fnac',
         'direccion',
         'sexo',
@@ -39,7 +39,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'contrasena',
+        'password',
         'api_token',
     ];
 
@@ -50,6 +50,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'contrasena' => 'hashed',
+        'password' => 'hashed',
     ];
 }
