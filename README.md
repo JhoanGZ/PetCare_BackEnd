@@ -4,7 +4,8 @@
   <img src="https://github.com/JhoanGZ/PetCare_FrontEnd/blob/main/assets/images/logo_petcare.png?raw=true" alt="PetCare Logo" />
 </p>
 
-PetCare BackEnd is a backend application developed with Laravel, designed to provide services for managing pets. This application offers a robust and secure interface for handling data related to pets, owners, appointments, and more.
+Developed with Laravel, designed to help pet foundations to manage their pets' profiles and give a donors and new adopting owners the opportunity to help a pet needed for home.
+This application offers a robust and secure interface for handling data related to all transactions related to the app.
 
 ## Features
 
