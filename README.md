@@ -68,8 +68,6 @@ PetCare BackEnd is a backend application developed with Laravel, designed to pro
     git clone https://github.com/JhoanGZ/PetCare_BackEnd.git
     ```
 
-    ````
-
 2. Install PHP dependencies
 
     ```sh
