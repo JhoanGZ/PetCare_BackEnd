@@ -1,6 +1,8 @@
-# PetCare BackEnd
+<h1 align="center"><strong>PetCare - BackEnd - API</strong></h1>
 
-## Description
+<p align="center">
+  <img src="https://github.com/JhoanGZ/PetCare_FrontEnd/blob/main/assets/images/logo_petcare.png?raw=true" alt="PetCare Logo" />
+</p>
 
 PetCare BackEnd is a backend application developed with Laravel, designed to provide services for managing pets. This application offers a robust and secure interface for handling data related to pets, owners, appointments, and more.
 
@@ -105,10 +107,12 @@ PetCare BackEnd is a backend application developed with Laravel, designed to pro
     http://localhost:8000
     ```
 
-License
+## License
+
 This project is licensed under the Apache License, Version 2.0. See the LICENSE file for more details.
 
-Acknowledgements
+## Acknowledgements
+
 Special thanks to my partners and friend from my university and professors for their support and guidance for this midterm studies project.
 Thanks to the Flutter communities for their excellent resources and support.
 
