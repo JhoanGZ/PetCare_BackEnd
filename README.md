@@ -11,7 +11,7 @@ This application offers a robust and secure interface for handling data related 
 
 -   **User Management**: Authentication and authorization using Laravel Sanctum.
 -   **Pet Management**: Complete CRUD operations for managing pet information.
--   **Appointment Management**: Handling appointments for veterinary services.
+-   **Appointment Management**: Handling appointments for adoption services.
 -   **RESTful Interface**: RESTful API for all major operations.
 -   **Notifications**: Notification system to alert users about important events.
 
