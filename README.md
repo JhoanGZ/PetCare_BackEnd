@@ -18,7 +18,7 @@ This application offers a robust and secure interface for handling data related 
 ## Technologies Used
 
 -   **Backend**: Laravel 10.x, PHP 8.1
--   **Frontend**: JavaScript, Vite, Axios
+-   **Frontend**: Flutter, Dart 
 
 ## Prerequisites
 
