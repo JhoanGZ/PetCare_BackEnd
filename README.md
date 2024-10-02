@@ -112,7 +112,7 @@ This project is licensed under the Apache License, Version 2.0. See the LICENSE 
 
 ## Acknowledgements
 
-Special thanks to my partners and friend from my university and professors for their support and guidance for this midterm studies project.
+Special thanks to my partners and friends from my university and professors for their support and guidance for this midterm studies project.
 Thanks to the Flutter communities for their excellent resources and support.
 
 [Project Link FrontEnd](https://github.com/JhoanGZ/PetCare_FrontEnd)
